@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int main() {
+    int A[3][3], B[3][3], C[3][3];
+    int i, j, k;
+
+    // Input elements for the first 3x3 matrix
+    printf("Enter elements of the first 3x3 matrix:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            scanf("%d", &A[i][j]);
+        }
+    }
+
+    // Input elements for the second 3x3 matrix
+    printf("Enter elements of the second 3x3 matrix:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            scanf("%d", &B[i][j]);
+        }
+    }
+
+    // Multiply matrices A and B
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            C[i][j] = 0; // Initialize cell to 0 before summing
+            for (k = 0; k < 3; k++) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+
+    // Display the resulting 3x3 matrix
+    printf("\nProduct of the two matrices:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            printf("%d\t", C[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
