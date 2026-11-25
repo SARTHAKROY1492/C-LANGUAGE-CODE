@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int main() {
+    int n, i, minIdx, maxIdx, temp;
+
+    // Input array size
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    // Input array elements
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Initialize min and max indices to the first element
+    minIdx = 0;
+    maxIdx = 0;
+
+    // Traverse the array to find indices of min and max
+    for (i = 1; i < n; i++) {
+        if (arr[i] < arr[minIdx]) {
+            minIdx = i;
+        }
+        if (arr[i] > arr[maxIdx]) {
+            maxIdx = i;
+        }
+    }
+
+    printf("\nMinimum number: %d (at index %d)", arr[minIdx], minIdx);
+    printf("\nMaximum number: %d (at index %d)\n", arr[maxIdx], maxIdx);
+
+    // Swap the minimum and maximum elements using their indices
+    temp = arr[minIdx];
+    arr[minIdx] = arr[maxIdx];
+    arr[maxIdx] = temp;
+
+    // Print the updated array
+    printf("\nArray after swapping min and max:\n");
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
