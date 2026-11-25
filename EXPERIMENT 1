@@ -1,0 +1,8 @@
+#include <stdio.h>
+
+int main() {
+    printf("Name:\tRahul\n");
+    printf("Course:\tB.Tech\n");
+    printf("City:\tNadiad");
+    return 0;
+}
