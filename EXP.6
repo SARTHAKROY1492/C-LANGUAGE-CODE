@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    char str1[100], str2[100];
+    int i = 0;
+
+    // Read two strings from the user
+    printf("Enter first string: ");
+    scanf("%s", str1);
+
+    printf("Enter second string: ");
+    scanf("%s", str2);
+
+    // Compare characters one by one until a mismatch or end of string is found
+    while (str1[i] == str2[i] && str1[i] != '\0' && str2[i] != '\0') {
+        i++;
+    }
+
+    // If both strings reach the null terminator at the same index, they are equal
+    if (str1[i] == '\0' && str2[i] == '\0') {
+        printf("Given strings are same\n");
+    } else {
+        printf("Given strings are not same\n");
+    }
+
+    return 0;
+}
