@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+
+// Function to search for the pattern in the main string
+int findSubstring(char mainStr[], char pattern[]) {
+    int mainLen = strlen(mainStr);
+    int patLen = strlen(pattern);
+
+    // Loop through the main string up to the last possible starting index
+    for (int i = 0; i <= mainLen - patLen; i++) {
+        int j;
+        
+        // Check for a character-by-character match
+        for (j = 0; j < patLen; j++) {
+            if (mainStr[i + j] != pattern[j]) {
+                break;
+            }
+        }
+        
+        // If all characters of the pattern matched, return the starting index
+        if (j == patLen) {
+            return i;
+        }
+    }
+    
+    // Return -1 if the pattern is not found
+    return -1;
+}
+
+int main() {
+    char mainStr[100], pattern[50];
+
+    printf("Enter the main string: ");
+    fgets(mainStr, sizeof(mainStr), stdin);
+    mainStr[strcspn(mainStr, "\n")] = '\0'; // Remove trailing newline
+
+    printf("Enter the pattern (substring) to search: ");
+    fgets(pattern, sizeof(pattern), stdin);
+    pattern[strcspn(pattern, "\n")] = '\0'; // Remove trailing newline
+
+    int index = findSubstring(mainStr, pattern);
+
+    if (index != -1) {
+        printf("Pattern found at starting index: %d\n", index);
+    } else {
+        printf("Pattern not found in the main string.\n");
+    }
+
+    return 0;
+}
