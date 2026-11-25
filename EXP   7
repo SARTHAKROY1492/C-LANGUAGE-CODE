@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+float calculateTotal(float p, float r, int n) {
+    float Total_amount = p;
+
+    for (int i = 1; i <= n; i++) {
+        Total_amount = Total_amount * (1 + r);
+    }
+
+    return Total_amount;
+}
+
+int main() {
+    float p, r, result;
+    int n;
+
+    printf("Enter principal amount (p): ");
+    scanf("%f", &p);
+    printf("Enter rate of interest in decimal (r, e.g., 0.05 for 5%%): ");
+    scanf("%f", &r);
+    printf("Enter period in years (n): ");
+    scanf("%d", &n);
+
+    result = calculateTotal(p, r, n);
+    printf("Total Amount = %.2f\n", result);
+
+    return 0;
+}
