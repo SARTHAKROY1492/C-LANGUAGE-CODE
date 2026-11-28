@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+
+void appendLastThree(char str1[], char str2[]) {
+    int len1 = strlen(str1);
+    int len2 = strlen(str2);
+    int start = (len2 >= 3) ? (len2 - 3) : 0;
+    int i = 0;
+
+    while (str2[start + i] != '\0') {
+        str1[len1 + i] = str2[start + i];
+        i++;
+    }
+    str1[len1 + i] = '\0';
+}
+
+int main() {
+    char str1[200], str2[100];
+
+    printf("Enter the first string: ");
+    fgets(str1, sizeof(str1), stdin);
+    str1[strcspn(str1, "\n")] = '\0'; // Remove trailing newline
+
+    printf("Enter the second string: ");
+    fgets(str2, sizeof(str2), stdin);
+    str2[strcspn(str2, "\n")] = '\0'; // Remove trailing newline
+
+    appendLastThree(str1, str2);
+
+    printf("Resulting first string: %s\n", str1);
+    return 0;
+}
