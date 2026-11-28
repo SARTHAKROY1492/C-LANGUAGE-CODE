@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+// Function to append string t to the end of string s
+void mystrcat(char *s, char *t) {
+    // Move pointer 's' to the end of the first string
+    while (*s != '\0') {
+        s++;
+    }
+
+    // Copy characters from 't' to the end of 's'
+    while (*t != '\0') {
+        *s = *t;
+        s++;
+        t++;
+    }
+
+    // Add the terminating null character at the end
+    *s = '\0';
+}
+
+int main() {
+    // Ensure 's' has enough space to hold both strings
+    char s[100] = "Hello, ";
+    char t[] = "World!";
+
+    mystrcat(s, t);
+
+    printf("Concatenated string: %s\n", s);
+
+    return 0;
+}
