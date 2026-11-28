@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    FILE *fp;
+    int n, num, count = 0;
+    int sum = 0;
+    float average;
+
+    // 1. Write integers to the file
+    fp = fopen("numbers.txt", "w");
+    if (fp == NULL) {
+        printf("Error opening file for writing!\n");
+        return 1;
+    }
+
+    printf("How many integers do you want to enter? ");
+    scanf("%d", &n);
+
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &num);
+        fprintf(fp, "%d\n", num);
+    }
+    fclose(fp);
+
+    // 2. Read integers back and calculate average
+    fp = fopen("numbers.txt", "r");
+    if (fp == NULL) {
+        printf("Error opening file for reading!\n");
+        return 1;
+    }
+
+    while (fscanf(fp, "%d", &num) == 1) {
+        sum += num;
+        count++;
+    }
+    fclose(fp);
+
+    if (count > 0) {
+        average = (float)sum / count;
+        printf("\nSum = %d\n", sum);
+        printf("Average = %.2f\n", average);
+    } else {
+        printf("\nNo numbers found in the file.\n");
+    }
+
+    return 0;
+}
