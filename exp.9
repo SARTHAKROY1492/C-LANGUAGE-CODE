@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+struct Student {
+    int id;
+    char name[50];
+    float marks[3];
+    float total;
+};
+
+int main() {
+    struct Student s[10];
+    int maxIndex = 0;
+
+    for (int i = 0; i < 10; i++) {
+        printf("\nEnter details for Student %d:\n", i + 1);
+        printf("ID: ");
+        scanf("%d", &s[i].id);
+        printf("Name: ");
+        scanf(" %[^\n]", s[i].name);
+
+        s[i].total = 0;
+        for (int j = 0; j < 3; j++) {
+            printf("Marks of Subject %d: ", j + 1);
+            scanf("%f", &s[i].marks[j]);
+            s[i].total += s[i].marks[j];
+        }
+
+        if (s[i].total > s[maxIndex].total) {
+            maxIndex = i;
+        }
+    }
+
+    printf("\n-------------------- RESULT TABLE --------------------\n");
+    printf("%-8s %-20s %-8s %-8s %-8s %-8s\n", "ID", "Name", "Sub1", "Sub2", "Sub3", "Total");
+    printf("------------------------------------------------------\n");
+    for (int i = 0; i < 10; i++) {
+        printf("%-8d %-20s %-8.2f %-8.2f %-8.2f %-8.2f\n",
+               s[i].id, s[i].name, s[i].marks[0], s[i].marks[1], s[i].marks[2], s[i].total);
+    }
+
+    printf("\n--- Top Scoring Student ---\n");
+    printf("ID: %d\nName: %s\nTotal Marks: %.2f\n",
+           s[maxIndex].id, s[maxIndex].name, s[maxIndex].total);
+
+    return 0;
+}
