@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <string.h>
+
+#define CURRENT_YEAR 2026
+#define TOTAL_PERSONS 10
+
+union AgeInfo {
+    char dob[15];      // For child (age <= 18)
+    int years;         // For adult (18 < age <= 60)
+    char message[20];  // For aged person (age > 60)
+};
+
+struct Person {
+    char name[50];
+    int birthYear;
+    int age;
+    union AgeInfo info;
+};
+
+int main() {
+    struct Person p[TOTAL_PERSONS];
+    int day, month;
+
+    // Input details for 10 persons
+    for (int i = 0; i < TOTAL_PERSONS; i++) {
+        printf("\n--- Enter details for Person %d ---\n", i + 1);
+        printf("Name: ");
+        scanf(" %[^\n]", p[i].name);
+
+        printf("Birth Date (dd mm yyyy): ");
+        scanf("%d %d %d", &day, &month, &p[i].birthYear);
+
+        p[i].age = CURRENT_YEAR - p[i].birthYear;
+
+        if (p[i].age <= 18) {
+            sprintf(p[i].info.dob, "%02d-%02d-%04d", day, month, p[i].birthYear);
+        } else if (p[i].age <= 60) {
+            p[i].info.years = p[i].age;
+        } else {
+            strcpy(p[i].info.message, "old person");
+        }
+    }
+
+    // Display stored information
+    printf("\n================ PERSON DETAILS ================\n");
+    for (int i = 0; i < TOTAL_PERSONS; i++) {
+        printf("Name: %-15s | ", p[i].name);
+
+        if (p[i].age <= 18) {
+            printf("DOB: %s\n", p[i].info.dob);
+        } else if (p[i].age <= 60) {
+            printf("Age: %d years\n", p[i].info.years);
+        } else {
+            printf("Status: %s\n", p[i].info.message);
+        }
+    }
+
+    return 0;
+}
