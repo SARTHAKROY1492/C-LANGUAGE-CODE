@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main() {
+    int n, i, j, isSymmetric = 1;
+
+    printf("Enter the order (n) of the nxn matrix: ");
+    scanf("%d", &n);
+
+    int mat[n][n];
+    printf("Enter elements of the %dx%d matrix:\n", n, n);
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            scanf("%d", (*(mat + i) + j));
+        }
+    }
+
+    // Check symmetry using pointer notation
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            if (*(*(mat + i) + j) != *(*(mat + j) + i)) {
+                isSymmetric = 0;
+                break;
+            }
+        }
+        if (!isSymmetric) {
+            break;
+        }
+    }
+
+    if (isSymmetric) {
+        printf("The given matrix is symmetric.\n");
+    } else {
+        printf("The given matrix is not symmetric.\n");
+    }
+
+    return 0;
+}
