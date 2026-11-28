@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Product {
+    int id;
+    char name[50];
+    float price;
+};
+
+void sortProductsByName(struct Product p[], int n) {
+    struct Product temp;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (strcmp(p[j].name, p[j + 1].name) > 0) {
+                temp = p[j];
+                p[j] = p[j + 1];
+                p[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void searchProduct(struct Product p[], int n, int searchId) {
+    for (int i = 0; i < n; i++) {
+        if (p[i].id == searchId) {
+            printf("\nProduct Found:\n");
+            printf("Name: %s\n", p[i].name);
+            printf("Price: %.2f\n", p[i].price);
+            return;
+        }
+    }
+    printf("\nProduct with ID %d not found.\n", searchId);
+}
+
+int main() {
+    int n, searchId;
+    printf("Enter number of products: ");
+    scanf("%d", &n);
+
+    struct Product p[n];
+    for (int i = 0; i < n; i++) {
+        printf("\nEnter details for Product %d:\n", i + 1);
+        printf("ID: ");
+        scanf("%d", &p[i].id);
+        printf("Name: ");
+        scanf(" %[^\n]", p[i].name);
+        printf("Price: ");
+        scanf("%f", &p[i].price);
+    }
+
+    sortProductsByName(p, n);
+
+    printf("\n--- Products Sorted Alphabetically by Name ---\n");
+    printf("%-8s %-20s %-10s\n", "ID", "Name", "Price");
+    for (int i = 0; i < n; i++) {
+        printf("%-8d %-20s %-10.2f\n", p[i].id, p[i].name, p[i].price);
+    }
+
+    printf("\nEnter Product ID to search: ");
+    scanf("%d", &searchId);
+    searchProduct(p, n, searchId);
+
+    return 0;
+}
