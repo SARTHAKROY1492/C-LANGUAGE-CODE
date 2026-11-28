@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+union Book {
+    char isbn[20];
+    char title[50];
+    float price;
+};
+
+int main() {
+    union Book b;
+
+    // Read and display ISBN
+    printf("Enter Book ISBN: ");
+    scanf("%s", b.isbn);
+    printf("Book ISBN: %s\n\n", b.isbn);
+
+    // Read and display Title
+    printf("Enter Book Title: ");
+    scanf(" %[^\n]", b.title);
+    printf("Book Title: %s\n\n", b.title);
+
+    // Read and display Price
+    printf("Enter Book Price: ");
+    scanf("%f", &b.price);
+    printf("Book Price: %.2f\n", b.price);
+
+    return 0;
+}
