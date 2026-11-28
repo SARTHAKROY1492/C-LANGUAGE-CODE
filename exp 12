@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    FILE *fp;
+    char ch;
+
+    // 1. Open file in write mode
+    fp = fopen("characters.txt", "w");
+    if (fp == NULL) {
+        printf("Error opening file for writing!\n");
+        return 1;
+    }
+
+    printf("Enter text (press Ctrl+Z then Enter on Windows, or Ctrl+D on Linux/Mac to stop):\n");
+    while ((ch = getchar()) != EOF) {
+        fputc(ch, fp);
+    }
+    fclose(fp);
+
+    // 2. Reopen the same file in read mode
+    fp = fopen("characters.txt", "r");
+    if (fp == NULL) {
+        printf("Error opening file for reading!\n");
+        return 1;
+    }
+
+    printf("\nContent read from the file:\n");
+    while ((ch = fgetc(fp)) != EOF) {
+        putchar(ch);
+    }
+    fclose(fp);
+
+    return 0;
+}
