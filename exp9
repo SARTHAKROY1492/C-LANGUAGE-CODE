@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+struct Item {
+    char name[50];
+    float price;
+    int quantity;
+};
+
+void update(struct Item *it, float newPrice, int newQuantity) {
+    it->price = newPrice;
+    it->quantity = newQuantity;
+}
+
+int main() {
+    struct Item item;
+    float newPrice;
+    int newQuantity;
+
+    printf("Enter item name: ");
+    scanf(" %[^\n]", item.name);
+    printf("Enter initial price: ");
+    scanf("%f", &item.price);
+    printf("Enter initial quantity: ");
+    scanf("%d", &item.quantity);
+
+    printf("\nEnter updated price: ");
+    scanf("%f", &newPrice);
+    printf("Enter updated quantity: ");
+    scanf("%d", &newQuantity);
+
+    update(&item, newPrice, newQuantity);
+
+    printf("\n--- Updated Item Details ---\n");
+    printf("Name: %s\n", item.name);
+    printf("Price: %.2f\n", item.price);
+    printf("Quantity: %d\n", item.quantity);
+
+    return 0;
+}
